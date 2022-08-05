@@ -4,6 +4,8 @@ Automatically generate an AsyncAPI spec file from your [Inngest Cloud](https://w
 
 To start, clone this repo and run the following commands:
 
+_**Requirement:** You must be logged in via the Inngest CLI ([docs](https://www.inngest.com/docs/cli/login))_
+
 ```
 npm install
 node index.js
