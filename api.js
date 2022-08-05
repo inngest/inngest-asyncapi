@@ -6,7 +6,8 @@ const INNGEST_CONFIG_PATH = path.join(os.homedir(), ".config/inngest/state");
 export const getCredentials = () => {
   const file = fs.readFileSync(INNGEST_CONFIG_PATH, "utf8");
   const config = JSON.parse(file);
-  return config.credentials;
+  const buff = Buffer.from(config.credentials, "base64");
+  return buff.toString("ascii");
 };
 
 const request = async (query = "", variables = {}) => {
