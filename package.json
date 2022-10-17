@@ -1,15 +1,26 @@
 {
-  "name": "inngest-asyncapi",
+  "name": "@inngest/asyncapi",
   "version": "0.1.0",
-  "description": "",
+  "description": "Generate AsyncAPI specs from your Inngest account",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build",
+    "build": "rm ./bin/index.js && ./node_modules/.bin/esbuild index.js --platform=node --bundle --outfile=bin/index.js"
   },
+  "bin": {
+    "inngest_asyncapi": "./bin/index.js"
+  },
+  "files": [
+    "./bin/index.js",
+    "README.md"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.11"
   }
 }

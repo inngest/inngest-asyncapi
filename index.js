@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import fs from "node:fs";
 import yaml from "js-yaml";
 
@@ -6,12 +7,17 @@ import { builder } from "./builder.js";
 
 const FILENAME = "spec.yaml";
 
-console.log("Fetching latest event collections from Inngest API...");
+const run = async () => {
+  console.log("Fetching latest event schemas from Inngest API...");
+  const workspaceID = await getProductionWorkspaceID();
+  const eventCollections = await getEventCollections(workspaceID);
+  const spec = builder(eventCollections);
+  fs.writeFileSync(`./${FILENAME}`, yaml.dump(spec));
+  console.log(`🎉 Successfully generated AsyncAPI spec!
 
-const workspaceID = await getProductionWorkspaceID();
-const eventCollections = await getEventCollections(workspaceID);
-const spec = builder(eventCollections);
+Spec includes ${eventCollections.length} event schemas from your account.
 
-fs.writeFileSync(`./${FILENAME}`, yaml.dump(spec));
+File created at ./${FILENAME}`);
+};
 
-console.log(`Successfully generated AsyncAPI spec at ./${FILENAME}`);
+run();

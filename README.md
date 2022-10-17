@@ -2,13 +2,17 @@
 
 Automatically generate an AsyncAPI spec file from your [Inngest Cloud](https://www.inngest.com) account.
 
-To start, clone this repo and run the following commands:
-
-_**Requirement:** You must be logged in via the Inngest CLI ([docs](https://www.inngest.com/docs/cli/login))_
+After being logged in with the [Inngest CLI](https://www.inngest.com/docs/cli/installation) you can quickly generate an AsyncAPI schema from your account using the following command:
 
 ```
-npm install
-node index.js
+npx @inngest/asyncapi
+```
+
+You should now have a properly formatted AsyncAPI spec in a new `spec.yaml` file!
+
+You can now explore your spec using the [AsyncAPI Studio](https://studio.asyncapi.com/). You can do this right on the web studio or with the Async API CLI:
+
+```
 npm install -g @asyncapi/cli
 asyncapi start studio -f ./spec.yaml
 ```
